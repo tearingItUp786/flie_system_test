@@ -7,12 +7,11 @@ class Detail extends React.Component {
   render() {
     const { navigation } = this.props;
     const source = navigation.getParam('source', 'NO-ID');
+    console.log(source);
     return (
       <View style={styles.container}>
         <Text h2>Detail</Text>
-        <PDF 
-          source={source}
-        />
+        <PDF source={source} />
       </View>
     );
   }
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'center'
   }
 });
 

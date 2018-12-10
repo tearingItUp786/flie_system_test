@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { ListItem, Text } from 'react-native-elements';
+import RNFetchBlob from 'rn-fetch-blob';
+import axios from 'axios';
 
 const pdfs = [
   {
@@ -17,6 +19,9 @@ const pdfs = [
 
 class Home extends React.Component {
   render() {
+    const { fs, config } = RNFetchBlob;
+    const { DocumentDir } = fs.dirs;
+
     return (
       <View style={styles.container}>
         <Text h2>Home</Text>
@@ -36,6 +41,15 @@ class Home extends React.Component {
               }}
               onLongPress={() => {
                 alert('damn son');
+                config({
+                  path: DocumentDir + `/${i}.pdf`
+                })
+                  .fetch('GET', item.uri)
+                  .then(res => {
+                    console.log('The file was saved to', res.path());
+                    item.uri = res.path();
+                    console.log(item);
+                  });
               }}
               chevron
             />
