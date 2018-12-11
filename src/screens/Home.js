@@ -44,7 +44,7 @@ class Home extends React.Component {
                 config({
                   path: DocumentDir + `/${i}.pdf`
                 })
-                  .fetch('GET', item.uri)
+                  .fetch('GET', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')
                   .then(res => {
                     console.log('The file was saved to', res.path());
                     item.uri = res.path();
